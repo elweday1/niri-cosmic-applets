@@ -1,11 +1,11 @@
 [Desktop Entry]
-Name=Numbered Workspaces
-Comment=Switch between numbered workspaces in the panel
+Name=Workspaces Niri
+Comment=Switch between niri workspaces in the panel
 Type=Application
-Exec=cosmic-applet-workspaces
+Exec=workspaces-niri
 Terminal=false
 Categories=COSMIC;
-Keywords=COSMIC;Applet;Workspace;
+Keywords=COSMIC;Applet;Workspace;niri;
 Icon=com.system76.CosmicAppletWorkspaces
 StartupNotify=true
 NoDisplay=true

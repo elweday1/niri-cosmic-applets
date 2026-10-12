@@ -27,3 +27,7 @@ tracing.workspace = true
 url = "2.5.8"
 niri-ipc = "26.4.0"
 zbus.workspace = true
+
+[[bin]]
+name = "app-tray-niri"
+path = "src/main.rs"

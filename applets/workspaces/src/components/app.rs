@@ -152,12 +152,33 @@ impl cosmic::Application for IcedWorkspacesApplet {
         let buttons = self.workspaces[..popup_index].iter().map(|w| {
             let label = roman(w.idx);
             let side = suggested_total as f32 * 0.7;
-            let text_class = if w.is_active {
-                cosmic::theme::Text::Custom(active_numeral)
+            let label_text = cosmic::widget::text(label).size(12.0);
+            let label_el: Element<_> = if w.is_active {
+                column![
+                    label_text,
+                    container(
+                        cosmic::widget::Space::new()
+                            .width(Length::Fixed(side * 0.6))
+                            .height(Length::Fixed(2.0))
+                    )
+                    .class(cosmic::theme::Container::custom(|theme: &Theme| {
+                        cosmic::iced::widget::container::Style {
+                            background: Some(Background::Color(theme.cosmic().accent.base.into())),
+                            border: Border {
+                                radius: 1.0.into(),
+                                ..Default::default()
+                            },
+                            ..Default::default()
+                        }
+                    }))
+                ]
+                .spacing(2)
+                .align_x(Alignment::Center)
+                .into()
             } else {
-                cosmic::theme::Text::Default
+                label_text.into()
             };
-            let content = container(cosmic::widget::text(label).size(12.0).class(text_class))
+            let content = container(label_el)
                 .width(Length::Fixed(side * 1.3))
                 .height(Length::Fixed(side * 0.9))
                 .align_x(Alignment::Center)
@@ -180,7 +201,25 @@ impl cosmic::Application for IcedWorkspacesApplet {
 
             btn.class(
                 if w.is_active {
-                    cosmic::theme::iced::Button::Primary
+                    cosmic::theme::iced::Button::Custom(Box::new(
+                        move |theme, status| match status {
+                            button::Status::Hovered => button::Style {
+                                background: Some(Background::Color(
+                                    theme.current_container().component.hover.into(),
+                                )),
+                                border: Border {
+                                    radius: theme.cosmic().radius_xl().into(),
+                                    ..Default::default()
+                                },
+                                text_color: theme.current_container().component.on.into(),
+                                ..button::Style::default()
+                            },
+                            _ => button::Style {
+                                text_color: theme.current_container().component.on.into(),
+                                ..button::Style::default()
+                            },
+                        },
+                    ))
                 } else if w.is_urgent {
                     let appearance = |theme: &Theme| {
                         let cosmic = theme.cosmic();
@@ -337,9 +376,3 @@ fn roman(value: u8) -> String {
     out
 }
 
-fn active_numeral(theme: &cosmic::Theme) -> cosmic::iced::widget::text::Style {
-    cosmic::iced::widget::text::Style {
-        color: Some(theme.cosmic().accent_button.on.into()),
-        ..Default::default()
-    }
-}

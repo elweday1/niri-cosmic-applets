@@ -15,17 +15,21 @@ COSMIC panel running under niri.
 
 ## Install
 
-Needs a Rust toolchain, `just`, `pkg-config`, and `clang`/`libclang` (for bindgen).
+Needs Rust, `pkg-config`, and `clang`/`libclang` (for bindgen).
 
-    just install            # → ~/.local/bin and ~/.local/share/applications
-    sudo just prefix=/usr install
+    git clone https://github.com/elweday1/niri-cosmic-applets.git
+    cd niri-cosmic-applets
+    cargo build --release
+    cp target/release/{app-tray-niri,workspaces-niri,cosmic-applet-input-sources} ~/.local/bin/
+    cp data/*.desktop ~/.local/share/applications/
 
-Then add the applets in COSMIC Settings → Panel → Applets.
+The binary and desktop IDs match the existing applets, so this replaces them.
+Log out and back in to load the new builds.
 
 ## Develop
 
-    just build
-    just test
+    cargo build --release
+    cargo test
 
 Upstream of these crates: [pop-os/cosmic-applets](https://github.com/pop-os/cosmic-applets)
 (GPL-3.0-only). See `LICENSE`.

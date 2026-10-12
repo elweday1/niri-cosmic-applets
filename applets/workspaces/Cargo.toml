@@ -17,3 +17,7 @@ tokio.workspace = true
 i18n-embed.workspace = true
 i18n-embed-fl.workspace = true
 rust-embed.workspace = true
+
+[[bin]]
+name = "workspaces-niri"
+path = "src/main.rs"

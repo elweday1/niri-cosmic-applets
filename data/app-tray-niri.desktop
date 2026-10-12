@@ -1,11 +1,11 @@
 [Desktop Entry]
-Name=App Tray
-Comment=Launch pinned apps and manage open windows
+Name=App Tray Niri
+Comment=Launch pinned apps and manage open windows (niri backend)
 Type=Application
-Exec=cosmic-app-list
+Exec=app-tray-niri
 Terminal=false
 Categories=COSMIC;
-Keywords=COSMIC;Applet;App;Tray;List;Task;Bar;
+Keywords=COSMIC;Applet;App;Tray;List;Task;Bar;niri;
 Icon=com.system76.CosmicAppList
 StartupNotify=true
 NoDisplay=true
