@@ -1,5 +1,7 @@
 # niri-cosmic-applets
 
+<img src="res/screenshots/panel.png" alt="Workspaces and app tray in the panel" width="400"/>
+
 COSMIC panel applets for the [niri](https://github.com/YaLTeR/niri) compositor.
 They use niri's IPC instead of COSMIC's Wayland protocols, so they work on a
 COSMIC panel running under niri.
