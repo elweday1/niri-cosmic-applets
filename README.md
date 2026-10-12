@@ -15,6 +15,10 @@ COSMIC panel running under niri.
 > The app tray uses the same desktop ID as the stock COSMIC app list
 > (`com.system76.CosmicAppList`), so installing it replaces the stock applet.
 
+The applets run in the COSMIC panel on the niri session from
+[Drakulix/cosmic-ext-extra-sessions](https://github.com/Drakulix/cosmic-ext-extra-sessions),
+which provides unofficial session variants for cosmic-epoch.
+
 ## Install
 
 Needs Rust, `pkg-config`, and `clang`/`libclang` (for bindgen).
